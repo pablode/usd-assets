@@ -1,0 +1,17 @@
+# Blender
+*.blend
+*.blend1
+
+# MacOS
+.DS_Store
+._*
+
+# Windows
+Thumbs.db
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
