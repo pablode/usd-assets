@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<materialx version="1.38" colorspace="lin_rec709">
+  <UsdPreviewSurface name="SR_light" type="surfaceshader">
+    <input name="emissiveColor" type="color3" value="17.0, 12.0, 4.0" />
+  </UsdPreviewSurface>
+  <UsdPreviewSurface name="SR_white" type="surfaceshader">
+    <input name="diffuseColor" type="color3" value="0.725, 0.71, 0.68" />
+    <input name="roughness" type="float" value="1.0" />
+  </UsdPreviewSurface>
+  <UsdPreviewSurface name="SR_green" type="surfaceshader">
+    <input name="diffuseColor" type="color3" value="0.14, 0.45, 0.091" />
+    <input name="roughness" type="float" value="1.0" />
+  </UsdPreviewSurface>
+  <UsdPreviewSurface name="SR_red" type="surfaceshader">
+    <input name="diffuseColor" type="color3" value="0.63, 0.065, 0.05" />
+    <input name="roughness" type="float" value="1.0" />
+  </UsdPreviewSurface>
+  <surfacematerial name="light" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="SR_light" />
+  </surfacematerial>
+  <surfacematerial name="white" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="SR_white" />
+  </surfacematerial>
+  <surfacematerial name="green" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="SR_green" />
+  </surfacematerial>
+  <surfacematerial name="red" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="SR_red" />
+  </surfacematerial>
+</materialx>
