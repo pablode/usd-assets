@@ -41,18 +41,32 @@ A collection of USD assets with different material formats for educational and t
             <td>✔️</td>
         </tr>
         <tr>
-            <td rowspan=3 align="center">
+            <td align="center">
               <a href="coffeemaker">
                 <img max-width=120 width=120 src="coffeemaker/preview.png" />
               </a>
             </td>
-            <td rowspan=3>Coffeemaker</td>
+            <td>Coffeemaker</td>
             <td>✔️</td>
             <td>❌</td>
             <td>❌</td>
             <td>❌</td>
-            <td rowspan=3>~230k</td>
-            <td rowspan=3>CC-BY</td>
+            <td>~230k</td>
+            <td>CC-BY</td>
+        </tr>
+        <tr>
+            <td align="center">
+              <a href="teapot">
+                <img max-width=120 width=120 src="teapot/preview.png" />
+              </a>
+            </td>
+            <td>Utah Teapot</td>
+            <td>❌</td>
+            <td>✔️</td>
+            <td>❌</td>
+            <td>❌</td>
+            <td>~63k</td>
+            <td>CC0</td>
         </tr>
     </tbody>
 </table>
