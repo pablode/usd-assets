@@ -14,7 +14,7 @@ Faces: 16 quads
 
 Textures: ❌
 
-Versions: MaterialX (File ref.), MaterialX (UsdShade), MDL, UsdPreviewSurface, No materials
+Versions: MaterialX (File ref.), MaterialX (UsdShade), MDL, UsdPreviewSurface, Display colors
 
 Remarks:
 - modelled according to the data from https://www.graphics.cornell.edu/online/box/data.html
