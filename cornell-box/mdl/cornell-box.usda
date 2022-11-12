@@ -78,7 +78,9 @@ def Xform "root"
         matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (1.8512493024546365e-29, 0, 1, 0), (0, 0, 0, 1) )
         uniform token[] xformOpOrder = ["xformOp:transform"]
 
-        def Mesh "tall_box_front"
+        def Mesh "tall_box_front" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 2, 3, 1]
@@ -96,7 +98,9 @@ def Xform "root"
         matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (1.8512493024546365e-29, 0, 1, 0), (0, 0, 0, 1) )
         uniform token[] xformOpOrder = ["xformOp:transform"]
 
-        def Mesh "tall_box_right"
+        def Mesh "tall_box_right" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 2, 3, 1]
@@ -114,7 +118,9 @@ def Xform "root"
         matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (1.8512493024546365e-29, 0, 1, 0), (0, 0, 0, 1) )
         uniform token[] xformOpOrder = ["xformOp:transform"]
 
-        def Mesh "tall_box_back"
+        def Mesh "tall_box_back" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 2, 3, 1]
@@ -132,7 +138,9 @@ def Xform "root"
         matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (1.8512493024546365e-29, 0, 1, 0), (0, 0, 0, 1) )
         uniform token[] xformOpOrder = ["xformOp:transform"]
 
-        def Mesh "tall_box_left"
+        def Mesh "tall_box_left" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 2, 3, 1]
@@ -150,7 +158,9 @@ def Xform "root"
         matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (1.8512493024546365e-29, 0, 1, 0), (0, 0, 0, 1) )
         uniform token[] xformOpOrder = ["xformOp:transform"]
 
-        def Mesh "tall_box_top"
+        def Mesh "tall_box_top" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 2, 3, 1]
@@ -168,7 +178,9 @@ def Xform "root"
         matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (1.8512493024546365e-29, 0, 1, 0), (0, 0, 0, 1) )
         uniform token[] xformOpOrder = ["xformOp:transform"]
 
-        def Mesh "short_box_back"
+        def Mesh "short_box_back" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 2, 3, 1]
@@ -186,7 +198,9 @@ def Xform "root"
         matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (1.8512493024546365e-29, 0, 1, 0), (0, 0, 0, 1) )
         uniform token[] xformOpOrder = ["xformOp:transform"]
 
-        def Mesh "short_box_right"
+        def Mesh "short_box_right" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 2, 3, 1]
@@ -204,7 +218,9 @@ def Xform "root"
         matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (1.8512493024546365e-29, 0, 1, 0), (0, 0, 0, 1) )
         uniform token[] xformOpOrder = ["xformOp:transform"]
 
-        def Mesh "short_box_front"
+        def Mesh "short_box_front" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 2, 3, 1]
@@ -222,7 +238,9 @@ def Xform "root"
         matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (1.8512493024546365e-29, 0, 1, 0), (0, 0, 0, 1) )
         uniform token[] xformOpOrder = ["xformOp:transform"]
 
-        def Mesh "short_box_left"
+        def Mesh "short_box_left" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 2, 3, 1]
@@ -240,7 +258,9 @@ def Xform "root"
         matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (1.8512493024546365e-29, 0, 1, 0), (0, 0, 0, 1) )
         uniform token[] xformOpOrder = ["xformOp:transform"]
 
-        def Mesh "short_box_top"
+        def Mesh "short_box_top" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 2, 3, 1]
@@ -258,7 +278,9 @@ def Xform "root"
         matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (1.8512493024546365e-29, 0, 1, 0), (0, 0, 0, 1) )
         uniform token[] xformOpOrder = ["xformOp:transform"]
 
-        def Mesh "left_wall"
+        def Mesh "left_wall" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 2, 3, 1]
@@ -276,7 +298,9 @@ def Xform "root"
         matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (1.8512493024546365e-29, 0, 1, 0), (0, 0, 0, 1) )
         uniform token[] xformOpOrder = ["xformOp:transform"]
 
-        def Mesh "right_wall"
+        def Mesh "right_wall" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 2, 3, 1]
@@ -294,7 +318,9 @@ def Xform "root"
         matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (1.8512493024546365e-29, 0, 1, 0), (0, 0, 0, 1) )
         uniform token[] xformOpOrder = ["xformOp:transform"]
 
-        def Mesh "back_wall"
+        def Mesh "back_wall" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 3, 2]
@@ -312,7 +338,9 @@ def Xform "root"
         matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (1.8512493024546365e-29, 0, 1, 0), (9.926187466589415e-27, -0.0010000000474974513, 0, 1) )
         uniform token[] xformOpOrder = ["xformOp:transform"]
 
-        def Mesh "light"
+        def Mesh "light" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 3, 2]
@@ -330,7 +358,9 @@ def Xform "root"
         matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (1.8512493024546365e-29, 0, 1, 0), (0, 0, 0, 1) )
         uniform token[] xformOpOrder = ["xformOp:transform"]
 
-        def Mesh "ceiling"
+        def Mesh "ceiling" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 3, 2]
@@ -348,7 +378,9 @@ def Xform "root"
         matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (1.8512493024546365e-29, 0, 1, 0), (0, 0, 0, 1) )
         uniform token[] xformOpOrder = ["xformOp:transform"]
 
-        def Mesh "floor"
+        def Mesh "floor" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 3, 2]
