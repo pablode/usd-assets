@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <materialx version="1.38" colorspace="lin_rec709">
 
-  <!-- MaterialX implementation of the Blender porcelain material graph
-       described in this blog post: https://www.blenderguru.com/articles/making-better-materials -->
+  <!-- MaterialX implementation of a porcelain material, loosely based on this blog post:
+       https://www.blenderguru.com/articles/making-better-materials -->
   <nodegraph name="NG_porcelain">
     <subsurface_bsdf name="node1" type="BSDF">
       <input name="color" type="color3" value="1.0, 1.0, 1.0" />
     </subsurface_bsdf>
     <subsurface_bsdf name="node2" type="BSDF">
-      <input name="weight" type="float" value="0.3" />
+      <input name="radius" type="vector3" value="0.3, 0.3, 0.3" />
       <input name="color" type="color3" value="1.0, 1.0, 1.0" />
     </subsurface_bsdf>
     <mix name="node3" type="BSDF">
@@ -26,7 +26,7 @@
       <input name="mix" type="float" value="0.35" />
     </mix>
     <dielectric_bsdf name="node6" type="BSDF">
-      <input name="weight" type="float" value="0.65, 0.65, 0.65" />
+      <input name="weight" type="float" value="0.35" />
     </dielectric_bsdf>
     <layer name="node7" type="BSDF">
       <input name="top" type="BSDF" nodename="node6" />
@@ -42,7 +42,7 @@
   </surfacematerial>
 
   <UsdPreviewSurface name="SR_light" type="surfaceshader">
-    <input name="emissiveColor" type="color3" value="45.0, 45.0, 45.0" />
+    <input name="emissiveColor" type="color3" value="12.0, 12.0, 12.0" />
   </UsdPreviewSurface>
   <surfacematerial name="light" type="material">
     <input name="surfaceshader" type="surfaceshader" nodename="SR_light" />
