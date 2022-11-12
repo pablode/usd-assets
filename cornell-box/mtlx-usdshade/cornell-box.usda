@@ -1,29 +1,33 @@
 #usda 1.0
 (
+    defaultPrim = "cornell_box"
     doc = "Cornell Box"
     metersPerUnit = 1
     upAxis = "Z"
 )
 
-def Scope "materials"
+def Xform "cornell_box"
 {
-    def "Materials"
+    matrix4d xformOp:transform = ( (-1, -8.742277657347586e-8, 0, 0), (-3.821371353845884e-15, 4.371138828673793e-8, 1, 0), (-8.742277657347586e-8, 1, -4.371138828673793e-8, 0), (0, 0, 0, 1) )
+    uniform token[] xformOpOrder = ["xformOp:transform"]
+
+    def Scope "materials"
     {
         def Material "light"
         {
-            token outputs:mtlx:surface.connect = </materials/Materials/light/ND_UsdPreviewSurface_surfaceshader.outputs:surface>
+            token outputs:mtlx:surface.connect = </cornell_box/materials/light/ND_UsdPreviewSurface_surfaceshader.outputs:surface>
 
             def Shader "ND_UsdPreviewSurface_surfaceshader"
             {
                 uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
-                color3f inputs:emissiveColor = (17.0, 12.0, 4.0)
+                color3f inputs:emissiveColor = (17, 12, 4)
                 token outputs:surface
             }
         }
 
         def Material "white"
         {
-            token outputs:mtlx:surface.connect = </materials/Materials/white/ND_UsdPreviewSurface_surfaceshader.outputs:surface>
+            token outputs:mtlx:surface.connect = </cornell_box/materials/white/ND_UsdPreviewSurface_surfaceshader.outputs:surface>
 
             def Shader "ND_UsdPreviewSurface_surfaceshader"
             {
@@ -36,7 +40,7 @@ def Scope "materials"
 
         def Material "green"
         {
-            token outputs:mtlx:surface.connect = </materials/Materials/green/ND_UsdPreviewSurface_surfaceshader.outputs:surface>
+            token outputs:mtlx:surface.connect = </cornell_box/materials/green/ND_UsdPreviewSurface_surfaceshader.outputs:surface>
 
             def Shader "ND_UsdPreviewSurface_surfaceshader"
             {
@@ -49,7 +53,7 @@ def Scope "materials"
 
         def Material "red"
         {
-            token outputs:mtlx:surface.connect = </materials/Materials/red/ND_UsdPreviewSurface_surfaceshader.outputs:surface>
+            token outputs:mtlx:surface.connect = </cornell_box/materials/red/ND_UsdPreviewSurface_surfaceshader.outputs:surface>
 
             def Shader "ND_UsdPreviewSurface_surfaceshader"
             {
@@ -60,12 +64,6 @@ def Scope "materials"
             }
         }
     }
-}
-
-def Xform "root"
-{
-    matrix4d xformOp:transform = ( (-1, -8.742277657347586e-8, 0, 0), (-3.821371353845884e-15, 4.371138828673793e-8, 1, 0), (-8.742277657347586e-8, 1, -4.371138828673793e-8, 0), (0, 0, 0, 1) )
-    uniform token[] xformOpOrder = ["xformOp:transform"]
 
     def Xform "tall_box_front"
     {
@@ -78,7 +76,7 @@ def Xform "root"
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 2, 3, 1]
-            rel material:binding = </materials/Materials/white>
+            rel material:binding = </cornell_box/materials/white>
             normal3f[] normals = [(-0.29620907, 0, -0.9551231), (-0.29620907, 0, -0.9551231), (-0.29620907, 0, -0.9551231), (-0.29620907, 0, -0.9551231)] (
                 interpolation = "faceVarying"
             )
@@ -98,7 +96,7 @@ def Xform "root"
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 2, 3, 1]
-            rel material:binding = </materials/Materials/white>
+            rel material:binding = </cornell_box/materials/white>
             normal3f[] normals = [(-0.95616573, 0, 0.2928258), (-0.95616573, 0, 0.2928258), (-0.95616573, 0, 0.2928258), (-0.95616573, 0, 0.2928258)] (
                 interpolation = "faceVarying"
             )
@@ -118,7 +116,7 @@ def Xform "root"
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 2, 3, 1]
-            rel material:binding = </materials/Materials/white>
+            rel material:binding = </cornell_box/materials/white>
             normal3f[] normals = [(0.30170894, 0, 0.9534001), (0.30170894, 0, 0.9534001), (0.30170894, 0, 0.9534001), (0.30170894, 0, 0.9534001)] (
                 interpolation = "faceVarying"
             )
@@ -138,7 +136,7 @@ def Xform "root"
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 2, 3, 1]
-            rel material:binding = </materials/Materials/white>
+            rel material:binding = </cornell_box/materials/white>
             normal3f[] normals = [(0.95564896, 0, -0.29450804), (0.95564896, 0, -0.29450804), (0.95564896, 0, -0.29450804), (0.95564896, 0, -0.29450804)] (
                 interpolation = "faceVarying"
             )
@@ -158,7 +156,7 @@ def Xform "root"
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 2, 3, 1]
-            rel material:binding = </materials/Materials/white>
+            rel material:binding = </cornell_box/materials/white>
             normal3f[] normals = [(0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0)] (
                 interpolation = "faceVarying"
             )
@@ -178,7 +176,7 @@ def Xform "root"
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 2, 3, 1]
-            rel material:binding = </materials/Materials/white>
+            rel material:binding = </cornell_box/materials/white>
             normal3f[] normals = [(-0.2851209, 0, 0.95849156), (-0.2851209, 0, 0.95849156), (-0.2851209, 0, 0.95849156), (-0.2851209, 0, 0.95849156)] (
                 interpolation = "faceVarying"
             )
@@ -198,7 +196,7 @@ def Xform "root"
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 2, 3, 1]
-            rel material:binding = </materials/Materials/white>
+            rel material:binding = </cornell_box/materials/white>
             normal3f[] normals = [(-0.95782626, 0, -0.28734785), (-0.95782626, 0, -0.28734785), (-0.95782626, 0, -0.28734785), (-0.95782626, 0, -0.28734785)] (
                 interpolation = "faceVarying"
             )
@@ -218,7 +216,7 @@ def Xform "root"
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 2, 3, 1]
-            rel material:binding = </materials/Materials/white>
+            rel material:binding = </cornell_box/materials/white>
             normal3f[] normals = [(0.29282576, 0, -0.9561658), (0.29282576, 0, -0.9561658), (0.29282576, 0, -0.9561658), (0.29282576, 0, -0.9561658)] (
                 interpolation = "faceVarying"
             )
@@ -238,7 +236,7 @@ def Xform "root"
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 2, 3, 1]
-            rel material:binding = </materials/Materials/white>
+            rel material:binding = </cornell_box/materials/white>
             normal3f[] normals = [(0.9534001, 0, 0.30170888), (0.9534001, 0, 0.30170888), (0.9534001, 0, 0.30170888), (0.9534001, 0, 0.30170888)] (
                 interpolation = "faceVarying"
             )
@@ -258,7 +256,7 @@ def Xform "root"
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 2, 3, 1]
-            rel material:binding = </materials/Materials/white>
+            rel material:binding = </cornell_box/materials/white>
             normal3f[] normals = [(0, 0.99999994, 0), (0, 0.99999994, 0), (0, 0.99999994, 0), (0, 0.99999994, 0)] (
                 interpolation = "faceVarying"
             )
@@ -278,7 +276,7 @@ def Xform "root"
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 2, 3, 1]
-            rel material:binding = </materials/Materials/red>
+            rel material:binding = </cornell_box/materials/red>
             normal3f[] normals = [(-0.9999576, 0.008746003, -0.002861115), (-0.9999576, 0.008746003, -0.002861115), (-0.9999576, 0.008746003, -0.002861115), (-0.9999576, 0.008746003, -0.002861115)] (
                 interpolation = "faceVarying"
             )
@@ -298,7 +296,7 @@ def Xform "root"
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 2, 3, 1]
-            rel material:binding = </materials/Materials/green>
+            rel material:binding = </cornell_box/materials/green>
             normal3f[] normals = [(1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0)] (
                 interpolation = "faceVarying"
             )
@@ -318,7 +316,7 @@ def Xform "root"
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 3, 2]
-            rel material:binding = </materials/Materials/white>
+            rel material:binding = </cornell_box/materials/white>
             normal3f[] normals = [(-0, 0, -1), (-0, 0, -1), (-0, 0, -1), (-0, 0, -1)] (
                 interpolation = "faceVarying"
             )
@@ -338,7 +336,7 @@ def Xform "root"
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 3, 2]
-            rel material:binding = </materials/Materials/light>
+            rel material:binding = </cornell_box/materials/light>
             normal3f[] normals = [(0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0)] (
                 interpolation = "faceVarying"
             )
@@ -358,7 +356,7 @@ def Xform "root"
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 3, 2]
-            rel material:binding = </materials/Materials/white>
+            rel material:binding = </cornell_box/materials/white>
             normal3f[] normals = [(0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0)] (
                 interpolation = "faceVarying"
             )
@@ -378,7 +376,7 @@ def Xform "root"
         {
             int[] faceVertexCounts = [4]
             int[] faceVertexIndices = [0, 1, 3, 2]
-            rel material:binding = </materials/Materials/white>
+            rel material:binding = </cornell_box/materials/white>
             normal3f[] normals = [(0, 0.99999994, 0), (0, 0.99999994, 0), (0, 0.99999994, 0), (0, 0.99999994, 0)] (
                 interpolation = "faceVarying"
             )

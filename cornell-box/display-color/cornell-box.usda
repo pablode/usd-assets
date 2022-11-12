@@ -1,11 +1,12 @@
 #usda 1.0
 (
+    defaultPrim = "cornell_box"
     doc = "Cornell Box"
     metersPerUnit = 1
     upAxis = "Z"
 )
 
-def Xform "root"
+def Xform "cornell_box"
 {
     matrix4d xformOp:transform = ( (-1, -8.742277657347586e-8, 0, 0), (-3.821371353845884e-15, 4.371138828673793e-8, 1, 0), (-8.742277657347586e-8, 1, -4.371138828673793e-8, 0), (0, 0, 0, 1) )
     uniform token[] xformOpOrder = ["xformOp:transform"]
