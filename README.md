@@ -5,9 +5,9 @@ A collection of USD assets with different material formats for educational and t
 <table>
     <thead>
         <tr>
-            <th>Preview</th>
+            <th>Render</th>
             <th>Name</th>
-            <th>PreviewSurface?</th>
+            <th>Preview?</th>
             <th>MaterialX?</th>
             <th>MDL?</th>
             <th>Textures?</th>
@@ -66,6 +66,20 @@ A collection of USD assets with different material formats for educational and t
             <td>❌</td>
             <td>❌</td>
             <td>~63k</td>
+            <td>CC0</td>
+        </tr>
+        <tr>
+            <td align="center">
+              <a href="veach-ajar">
+                <img max-height=120 height=120 src="veach-ajar/preview.png" />
+              </a>
+            </td>
+            <td>Veach Ajar</td>
+            <td>❌</td>
+            <td>✔️</td>
+            <td>❌</td>
+            <td>✔️</td>
+            <td>~382k</td>
             <td>CC0</td>
         </tr>
     </tbody>

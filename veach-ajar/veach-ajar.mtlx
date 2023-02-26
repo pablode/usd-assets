@@ -1,0 +1,207 @@
+<?xml version="1.0"?>
+<materialx version="1.38" colorspace="lin_rec709">
+
+  <!-- Light -->
+  <uniform_edf name="Light_edf" type="EDF">
+    <!-- NOTE: it may be necessary to increase the renderer's 'max value' setting -->
+    <input name="color" type="color3" value="1000, 1000, 1000" />
+  </uniform_edf>
+  <surface name="Light_surface" type="surfaceshader">
+    <input name="edf" type="EDF" nodename="Light_edf" />
+  </surface>
+  <surfacematerial name="Light" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="Light_surface" />
+  </surfacematerial>
+
+  <!-- Checkerboard pattern, loosely based on this node graph of the MaterialX project:
+       https://github.com/AcademySoftwareFoundation/MaterialX/blob/f8f9fd56e6ed370986287b161fc5a2f6f3e9dcfd/resources/Materials/TestSuite/stdlib/shader/surface.mtlx#L4-L41 -->
+  <texcoord name="Checker_texcoord1" type="vector2">
+    <input name="index" type="integer" value="0" />
+  </texcoord>
+  <multiply name="Checker_mult1" type="vector2">
+    <input name="in1" type="vector2" nodename="Checker_texcoord1" />
+    <input name="in2" type="vector2" value="65.0, 36.75" />
+  </multiply>
+  <add name="Checker_offset" type="vector2">
+    <input name="in1" type="vector2" nodename="Checker_mult1" />
+    <input name="in2" type="vector2" value="0.0, 1.25" />
+  </add>
+  <swizzle name="Checker_swizz_x" type="float">
+    <input name="in" type="vector2" nodename="Checker_offset" />
+    <input name="channels" type="string" value="x" />
+  </swizzle>
+  <swizzle name="Checker_swizz_y" type="float">
+    <input name="in" type="vector2" nodename="Checker_offset" />
+    <input name="channels" type="string" value="y" />
+  </swizzle>
+  <floor name="Checker_floor1" type="float">
+    <input name="in" type="float" nodename="Checker_swizz_x" />
+  </floor>
+  <floor name="Checker_floor2" type="float">
+    <input name="in" type="float" nodename="Checker_swizz_y" />
+  </floor>
+  <add name="Checker_add1" type="float">
+    <input name="in1" type="float" nodename="Checker_floor1" />
+    <input name="in2" type="float" nodename="Checker_floor2" />
+  </add>
+  <modulo name="Checker_mod1" type="float">
+    <input name="in1" type="float" nodename="Checker_add1" />
+    <input name="in2" type="float" value="2.0" />
+  </modulo>
+  <mix name="Checker_mix" type="float">
+    <input name="fg" type="float" value="0.2" />
+    <input name="bg" type="float" value="0.8" />
+    <input name="mix" type="float" nodename="Checker_mod1" />
+  </mix>
+  <conductor_bsdf name="Checker_bsdf" type="BSDF">
+    <input name="weight" type="float" nodename="Checker_mix" />
+    <input name="ior" type="color3" value="1.65746, 0.880369, 0.521229" />
+    <input name="extinction" type="color3" value="9.22387, 6.26952, 4.837" />
+    <input name="roughness" type="vector2" value="0.1, 0.1" />
+  </conductor_bsdf>
+  <surface name="Checker_surface" type="surfaceshader">
+    <input name="bsdf" type="BSDF" nodename="Checker_bsdf" />
+  </surface>
+  <surfacematerial name="Checker" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="Checker_surface" />
+  </surfacematerial>
+
+  <!-- White -->
+  <oren_nayar_diffuse_bsdf name="White_bsdf" type="BSDF">
+    <input name="color" type="color3" value="0.8, 0.8, 0.8" />
+  </oren_nayar_diffuse_bsdf>
+  <surface name="White_surface" type="surfaceshader">
+    <input name="bsdf" type="BSDF" nodename="White_bsdf" />
+  </surface>
+  <surfacematerial name="White" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="White_surface" />
+  </surfacematerial>
+
+  <!-- Golden1 -->
+  <oren_nayar_diffuse_bsdf name="Golden1_bsdf" type="BSDF">
+    <input name="color" type="color3" value="0.247059, 0.168627, 0.0901961" />
+  </oren_nayar_diffuse_bsdf>
+  <surface name="Golden1_surface" type="surfaceshader">
+    <input name="bsdf" type="BSDF" nodename="Golden1_bsdf" />
+  </surface>
+  <surfacematerial name="Golden1" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="Golden1_surface" />
+  </surfacematerial>
+
+  <!-- Golden2 -->
+  <oren_nayar_diffuse_bsdf name="Golden2_bsdf" type="BSDF">
+    <input name="color" type="color3" value="0.258824, 0.207843, 0.145098" />
+  </oren_nayar_diffuse_bsdf>
+  <surface name="Golden2_surface" type="surfaceshader">
+    <input name="bsdf" type="BSDF" nodename="Golden2_bsdf" />
+  </surface>
+  <surfacematerial name="Golden2" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="Golden2_surface" />
+  </surfacematerial>
+
+  <!-- Metal -->
+  <conductor_bsdf name="Metal_bsdf" type="BSDF">
+    <input name="ior" type="color3" value="1.65746, 0.880369, 0.521229" />
+    <input name="extinction" type="color3" value="9.22387, 6.26952, 4.837" />
+    <input name="roughness" type="vector2" value="0.1, 0.1" />
+  </conductor_bsdf>
+  <surface name="Metal_surface" type="surfaceshader">
+    <input name="bsdf" type="BSDF" nodename="Metal_bsdf" />
+  </surface>
+  <surfacematerial name="Metal" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="Metal_surface" />
+  </surfacematerial>
+
+  <!-- Pot1 (Metal) -->
+  <conductor_bsdf name="Pot1_bsdf" type="BSDF">
+    <input name="ior" type="color3" value="1.65746, 0.880369, 0.521229" />
+    <input name="extinction" type="color3" value="9.22387, 6.26952, 4.837" />
+    <input name="roughness" type="vector2" value="0.15, 0.15" />
+  </conductor_bsdf>
+  <surface name="Pot1_surface" type="surfaceshader">
+    <input name="bsdf" type="BSDF" nodename="Pot1_bsdf" />
+  </surface>
+  <surfacematerial name="Pot1" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="Pot1_surface" />
+  </surfacematerial>
+
+  <!-- Pot2 (Diffuse) -->
+  <oren_nayar_diffuse_bsdf name="Pot2_bsdf" type="BSDF">
+    <input name="color" type="color3" value="0.8, 0.8, 0.8" />
+  </oren_nayar_diffuse_bsdf>
+  <surface name="Pot2_surface" type="surfaceshader">
+    <input name="bsdf" type="BSDF" nodename="Pot2_bsdf" />
+  </surface>
+  <surfacematerial name="Pot2" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="Pot2_surface" />
+  </surfacematerial>
+
+  <!-- Pot3 (Glass) -->
+  <dielectric_bsdf name="Pot3_bsdf" type="BSDF">
+    <input name="ior" type="float" value="1.5" />
+    <input name="scatter_mode" type="string" value="RT" />
+  </dielectric_bsdf>
+  <surface name="Pot3_surface" type="surfaceshader">
+    <input name="bsdf" type="BSDF" nodename="Pot3_bsdf" />
+  </surface>
+  <surfacematerial name="Pot3" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="Pot3_surface" />
+  </surfacematerial>
+
+  <!-- Landscape -->
+  <image name="Landscape_image" type="color3" colorspace="srgb_texture">
+    <input name="file" type="filename" value="textures/landscape-with-a-lake.jpg" />
+  </image>
+  <oren_nayar_diffuse_bsdf name="Landscape_bsdf" type="BSDF">
+    <input name="color" type="color3" nodename="Landscape_image" />
+  </oren_nayar_diffuse_bsdf>
+  <surface name="Landscape_surface" type="surfaceshader">
+    <input name="bsdf" type="BSDF" nodename="Landscape_bsdf" />
+  </surface>
+  <surfacematerial name="Landscape" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="Landscape_surface" />
+  </surfacematerial>
+
+  <!-- Wood1 -->
+  <image name="Wood1_image" type="color3" colorspace="srgb_texture">
+    <input name="file" type="filename" value="textures/cherry-wood-texture.jpg" />
+  </image>
+  <oren_nayar_diffuse_bsdf name="Wood1_bsdf" type="BSDF">
+    <input name="color" type="color3" nodename="Wood1_image" />
+  </oren_nayar_diffuse_bsdf>
+  <surface name="Wood1_surface" type="surfaceshader">
+    <input name="bsdf" type="BSDF" nodename="Wood1_bsdf" />
+  </surface>
+  <surfacematerial name="Wood1" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="Wood1_surface" />
+  </surfacematerial>
+
+  <!-- Wood2 -->
+  <image name="Wood2_image" type="color3" colorspace="srgb_texture">
+    <input name="file" type="filename" value="textures/Good_Textures_005844.jpg" />
+  </image>
+  <oren_nayar_diffuse_bsdf name="Wood2_bsdf" type="BSDF">
+    <input name="color" type="color3" nodename="Wood2_image" />
+  </oren_nayar_diffuse_bsdf>
+  <surface name="Wood2_surface" type="surfaceshader">
+    <input name="bsdf" type="BSDF" nodename="Wood2_bsdf" />
+  </surface>
+  <surfacematerial name="Wood2" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="Wood2_surface" />
+  </surfacematerial>
+
+  <!-- Metal2 -->
+  <conductor_bsdf name="Metal2_bsdf" type="BSDF">
+    <input name="ior" type="color3" value="1.65746, 0.880369, 0.521229" />
+    <input name="extinction" type="color3" value="9.22387, 6.26952, 4.837" />
+    <input name="roughness" type="vector2" value="0.25, 0.25" />
+    <!-- NOTE: original asset uses Beckmann distribution, which is not supported in MaterialX -->
+  </conductor_bsdf>
+  <surface name="Metal2_surface" type="surfaceshader">
+    <input name="bsdf" type="BSDF" nodename="Metal2_bsdf" />
+  </surface>
+  <surfacematerial name="Metal2" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="Metal2_surface" />
+  </surfacematerial>
+
+</materialx>
