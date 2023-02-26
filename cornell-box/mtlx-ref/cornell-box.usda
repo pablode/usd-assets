@@ -1,7 +1,7 @@
 #usda 1.0
 (
     defaultPrim = "cornell_box"
-    doc = "Cornell Box"
+    doc = "Cornell Box (CC0)"
     metersPerUnit = 1
     upAxis = "Z"
 )
