@@ -71,7 +71,8 @@ A collection of USD assets with different material formats for educational and t
         <tr>
             <td align="center">
               <a href="veach-ajar">
-                <img max-height=120 height=120 src="veach-ajar/preview.png" />
+                <!-- Corresponds to height of 120, but has correct aspect ratio on mobile -->
+                <img max-width=175 width=175 src="veach-ajar/preview.png" />
               </a>
             </td>
             <td>Veach Ajar</td>
