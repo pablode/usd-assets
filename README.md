@@ -79,7 +79,7 @@ A collection of USD assets with different material formats for educational and t
             <td>✔️</td>
             <td>❌</td>
             <td>✔️</td>
-            <td>~382k</td>
+            <td>~500k</td>
             <td>CC0</td>
         </tr>
     </tbody>

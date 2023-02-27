@@ -10,7 +10,7 @@ Creator: Benedikt Bitterli
 
 License: CC0 (Public domain)
 
-Faces: ~382k
+Faces: ~500k
 
 Textures: ✅
 
@@ -18,5 +18,6 @@ Remarks:
 - downloaded from [Benedikt Bitterli's Resources](https://benedikt-bitterli.me/resources/)
 - imported geometry into Blender
 - applied matrix transforms with Blender's Python shell
+- instanced teapots, fixed normals
 - added root transform
 - added MaterialX materials including procedural checkerboard
