@@ -10,7 +10,7 @@ Creator: Benedikt Bitterli
 
 License: CC0 (Public domain)
 
-Faces: ~63k
+Faces: ~126k
 
 Textures: ❌
 
