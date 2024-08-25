@@ -83,5 +83,19 @@ A collection of USD assets with different material formats for educational and t
             <td>~500k</td>
             <td>CC0</td>
         </tr>
+        <tr>
+            <td align="center">
+              <a href="materials-variants-shoe">
+                <img max-width=120 width=120 src="materials-variants-shoe/preview.png" />
+              </a>
+            </td>
+            <td>Materials Variants Shoe</td>
+            <td>✔️</td>
+            <td>❌</td>
+            <td>❌</td>
+            <td>✔️</td>
+            <td>22.7k</td>
+            <td>CC-BY</td>
+        </tr>
     </tbody>
 </table>
