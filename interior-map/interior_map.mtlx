@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<materialx version="1.38" colorspace="lin_rec709">
+
+  <nodedef name="ND_interiormap" node="interiormap" nodegroup="npr" doc="Interior Map">
+    <input name="cubemap" type="filename" value="" uniform="true" uiname="Cube Map" xpos="37.934784" ypos="3.387931" fileprefix=""
+           doc="Equiangular map projected inside cube." />
+    <input name="texcoord" type="vector2" defaultgeomprop="UV0" uiname="Texture Coordinates" xpos="6.463768" ypos="-1.956897"
+           doc="Texture coordinates of the surface geometry." />
+    <input name="rotation" type="float" value="0" unittype="angle" unit="degree" uimin="0" uimax="360" uiname="Rotation" xpos="34.405796" ypos="2.836207"
+           doc="Rotation of the cube map texture." />
+    <input name="depth" type="float" value="1.0" uimin="0.01" uimax="3.0" uiname="Depth" xpos="7.340580" ypos="1.172414"
+           doc="Distance to cube far plane." />
+    <output name="out" type="color3" />
+  </nodedef>
+
+  <nodegraph name="NG_interiormap" nodedef="ND_interiormap">
+    <viewdirection name="viewdirection_vector3" type="vector3" xpos="5.173913" ypos="5.310345" />
+    <multiply name="multiply_vector3" type="vector3" xpos="11.681159" ypos="0.931035">
+      <input name="in1" type="vector3" nodename="combine3_vector3" />
+      <input name="in2" type="vector3" nodename="transformmatrix_vector4" />
+    </multiply>
+    <divide name="divide_vector3" type="vector3" xpos="13.115942" ypos="2.060345">
+      <input name="in1" type="vector3" value="1, 1, 1" />
+      <input name="in2" type="vector3" nodename="multiply_vector3" />
+    </divide>
+    <absval name="absval_vector3" type="vector3" xpos="15.014493" ypos="2.206897">
+      <input name="in" type="vector3" nodename="divide_vector3" />
+    </absval>
+    <floor name="floor_vector2" type="vector2" xpos="7.449275" ypos="-0.758621">
+      <input name="in" type="vector2" interfacename="texcoord" />
+    </floor>
+    <subtract name="subtract_vector2" type="vector2" xpos="8.666667" ypos="-1.724138">
+      <input name="in1" type="vector2" interfacename="texcoord" />
+      <input name="in2" type="vector2" nodename="floor_vector2" />
+    </subtract>
+    <multiply name="multiply_vector2" type="vector2" xpos="10.231884" ypos="-1.784483">
+      <input name="in1" type="vector2" nodename="subtract_vector2" />
+      <input name="in2" type="vector2" value="2, 2" />
+    </multiply>
+    <multiply name="multiply_vector4" type="vector3" xpos="14.985507" ypos="0.422414">
+      <input name="in1" type="vector3" nodename="add_vector4" />
+      <input name="in2" type="vector3" nodename="divide_vector3" />
+    </multiply>
+    <convert name="convert_vector2_vector3" type="vector3" xpos="11.673913" ypos="-1.672414">
+      <input name="in" type="vector2" nodename="multiply_vector2" />
+    </convert>
+    <subtract name="subtract_vector4" type="vector3" xpos="16.550724" ypos="2.060345">
+      <input name="in1" type="vector3" nodename="absval_vector3" />
+      <input name="in2" type="vector3" nodename="multiply_vector4" />
+    </subtract>
+    <separate3 name="separate3_vector3" type="multioutput" xpos="18.065218" ypos="-1.672414">
+      <input name="in" type="vector3" nodename="subtract_vector4" />
+      <output name="outx" type="float" />
+      <output name="outy" type="float" />
+      <output name="outz" type="float" />
+    </separate3>
+    <min name="min_float" type="float" xpos="19.746376" ypos="-2.060345">
+      <input name="in1" type="float" output="outx" nodename="separate3_vector3" />
+      <input name="in2" type="float" output="outy" nodename="separate3_vector3" />
+    </min>
+    <min name="min_float2" type="float" xpos="21.086956" ypos="-1.232759">
+      <input name="in2" type="float" output="outz" nodename="separate3_vector3" />
+      <input name="in1" type="float" nodename="min_float" />
+    </min>
+    <multiply name="multiply_vector3FA" type="vector3" xpos="22.463768" ypos="1.456897">
+      <input name="in2" type="float" nodename="min_float2" />
+      <input name="in1" type="vector3" nodename="multiply_vector3" />
+    </multiply>
+    <add name="add_vector3" type="vector3" xpos="24.202898" ypos="-0.482759">
+      <input name="in1" type="vector3" nodename="multiply_vector3FA" />
+      <input name="in2" type="vector3" nodename="add_vector4" />
+    </add>
+    <separate3 name="viewDirChannels" type="multioutput" xpos="31.036232" ypos="4.594828">
+      <input name="in" type="vector3" nodename="normalize_vector3" />
+      <output name="outx" type="float" />
+      <output name="outz" type="float" />
+      <output name="outy" type="float" />
+    </separate3>
+    <atan2 name="angleXZ" type="float" xpos="33.311596" ypos="4.284483">
+      <input name="in1" type="float" output="outx" nodename="viewDirChannels" />
+      <input name="in2" type="float" output="outz" nodename="viewDirChannels" />
+    </atan2>
+    <multiply name="scaleXZ" type="float" xpos="34.471016" ypos="3.836207">
+      <input name="in1" type="float" nodename="angleXZ" />
+      <input name="in2" type="float" value="-0.159" />
+    </multiply>
+    <add name="longitude" type="float" xpos="35.637680" ypos="3.836207">
+      <input name="in1" type="float" nodename="scaleXZ" />
+      <input name="in2" type="float" value="0.5" />
+    </add>
+    <asin name="angleY" type="float" xpos="33.362320" ypos="5.594828">
+      <input name="in" type="float" nodename="viewDirChannels" output="outy" />
+    </asin>
+    <multiply name="scaleY" type="float" xpos="34.521740" ypos="5.112069">
+      <input name="in1" type="float" nodename="angleY" />
+      <input name="in2" type="float" value="0.318" />
+    </multiply>
+    <add name="latitude" type="float" xpos="35.681160" ypos="5.043103">
+      <input name="in1" type="float" nodename="scaleY" />
+      <input name="in2" type="float" value="0.5" />
+    </add>
+    <combine2 name="mapUvs" type="vector2" xpos="37.869564" ypos="4.525862">
+      <input name="in1" type="float" nodename="add_float" />
+      <input name="in2" type="float" nodename="latitude" />
+    </combine2>
+    <image name="envImage" type="color3" xpos="38.956520" ypos="4.206897">
+      <input name="file" type="filename" interfacename="cubemap" fileprefix="" />
+      <input name="texcoord" type="vector2" nodename="mapUvs" />
+      <input name="uaddressmode" type="string" value="periodic" />
+      <input name="vaddressmode" type="string" value="periodic" />
+      <input name="filtertype" type="string" value="linear" />
+    </image>
+    <normalize name="normalize_vector3" type="vector3" xpos="25.485508" ypos="-0.310345">
+      <input name="in" type="vector3" nodename="add_vector3" />
+    </normalize>
+    <add name="add_vector4" type="vector3" xpos="13.536232" ypos="-0.681035">
+      <input name="in1" type="vector3" nodename="convert_vector2_vector3" />
+      <input name="in2" type="vector3" value="-1, -1, 1" />
+    </add>
+    <creatematrix name="creatematrix_vector3_matrix33" type="matrix33" xpos="3.050725" ypos="6.456897">
+      <input name="in1" type="vector3" nodename="tangent_vector3" />
+      <input name="in2" type="vector3" nodename="bitangent_vector3" />
+      <input name="in3" type="vector3" nodename="normal_vector3" />
+    </creatematrix>
+    <transpose name="transpose_matrix33" type="matrix33" xpos="5.137681" ypos="6.974138">
+      <input name="in" type="matrix33" nodename="creatematrix_vector3_matrix33" />
+    </transpose>
+    <transformmatrix name="transformmatrix_vector4" type="vector3" xpos="6.695652" ypos="6.836207">
+      <input name="mat" type="matrix33" nodename="transpose_matrix33" />
+      <input name="in" type="vector3" nodename="viewdirection_vector3" />
+    </transformmatrix>
+    <tangent name="tangent_vector3" type="vector3" xpos="1.304348" ypos="5.758621" />
+    <bitangent name="bitangent_vector3" type="vector3" xpos="0.840580" ypos="6.896552" />
+    <normal name="normal_vector3" type="vector3" xpos="1.000000" ypos="8.206897" />
+    <combine3 name="combine3_vector3" type="vector3" xpos="9.652174" ypos="0.836207">
+      <input name="in1" type="float" value="1" />
+      <input name="in2" type="float" value="1" />
+      <input name="in3" type="float" nodename="divide_float" />
+    </combine3>
+    <divide name="divide_float" type="float" xpos="8.434783" ypos="1.034483">
+      <input name="in1" type="float" value="1" />
+      <input name="in2" type="float" interfacename="depth" />
+    </divide>
+    <add name="add_float" type="float" xpos="36.789856" ypos="3.525862">
+      <input name="in1" type="float" nodename="multiply_float" />
+      <input name="in2" type="float" nodename="longitude" />
+    </add>
+    <multiply name="multiply_float" type="float" xpos="35.449276" ypos="2.629310">
+      <input name="in1" type="float" interfacename="rotation" />
+      <input name="in2" type="float" value="0.00277778" />
+    </multiply>
+    <output name="out" type="color3" nodename="envImage" xpos="41.550724" ypos="6.422414" />
+  </nodegraph>
+
+</materialx>

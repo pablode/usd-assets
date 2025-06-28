@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<materialx version="1.38" colorspace="lin_rec709">
+  <xi:include href="interior_map.mtlx" />
+
+  <interiormap name="interiormap" type="color3">
+    <input name="cubemap" type="filename" value="room.png" />
+    <input name="depth" type="float" value="1.0" />
+    <input name="rotation" type="float" value="270.0" />
+  </interiormap>
+
+  <surface_unlit name="surface_unlit" type="surfaceshader">
+    <input name="emission_color" type="color3" nodename="interiormap" />
+  </surface_unlit>
+
+  <surfacematerial name="surfacematerial" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="surface_unlit" />
+  </surfacematerial>
+
+</materialx>
