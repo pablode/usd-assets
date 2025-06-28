@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<materialx version="1.39" colorspace="lin_rec709">
+  <xi:include href="lcd.mtlx" />
+
+  <lcd name="lcd" type="color3">
+    <input name="image" type="filename" value="sunflower.jpg" />
+    <input name="pattern" type="filename" value="pattern2.png" />
+    <input name="resolution" type="vector2" value="400, 400" />
+  </lcd>
+
+  <surface_unlit name="surface_unlit" type="surfaceshader">
+    <input name="emission_color" type="color3" nodename="lcd" />
+  </surface_unlit>
+
+  <surfacematerial name="surfacematerial" type="material">
+    <input name="surfaceshader" type="surfaceshader" nodename="surface_unlit" />
+  </surfacematerial>
+
+</materialx>

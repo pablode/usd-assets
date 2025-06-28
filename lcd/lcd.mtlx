@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<materialx version="1.39" colorspace="lin_rec709">
+
+  <nodedef name="ND_lcd" node="lcd" nodegroup="effect" doc="LCD">
+    <input name="image" type="filename" value="" uniform="true" uiname="Image" fileprefix=""
+           doc="Image displayed on the screen." xpos="13.485507" ypos="-3.482759" />
+    <input name="pattern" type="filename" value="" uniform="true" uiname="Pattern" fileprefix=""
+           doc="Subpixel pattern." xpos="8.485507" ypos="1.181034" />
+    <input name="texcoord" type="vector2" defaultgeomprop="UV0" uiname="Texture Coordinates" xpos="6.463768" ypos="-1.956897"
+           doc="Texture coordinates of the surface geometry." />
+    <input name="resolution" type="vector2" uiname="Pixel Resolution" value="50, 50"
+           doc="Number of subpixels in X, Y directions." xpos="-6.971014" ypos="2.422414" />
+    <output name="out" type="color3" />
+  </nodedef>
+
+  <nodegraph name="NG_lcd" nodedef="ND_lcd">
+    <multiply name="multiply_color3" type="color3" xpos="14.572464" ypos="-0.344828">
+      <input name="in1" type="color3" nodename="image_color3" />
+      <input name="in2" type="color3" nodename="image_color4" />
+    </multiply>
+    <image name="image_color3" type="color3" xpos="14.840580" ypos="-1.931034">
+      <input name="file" type="filename" interfacename="image" />
+      <input name="texcoord" type="vector2" nodename="combine2_vector3" />
+    </image>
+    <image name="image_color4" type="color3" xpos="10.289855" ypos="1.456897">
+      <input name="file" type="filename" interfacename="pattern" fileprefix="" />
+      <input name="texcoord" type="vector2" nodename="combine2_vector2" />
+    </image>
+    <separate2 name="separate2_vector2" type="multioutput" xpos="-3.963768" ypos="-3.103448">
+      <input name="in" type="vector2" interfacename="texcoord" />
+    </separate2>
+    <multiply name="multiply_float" type="float" xpos="6.739130" ypos="2.284483">
+      <input name="in2" type="float" output="outx" nodename="separate2_vector2" />
+      <input name="in1" type="float" nodename="round_float3" />
+    </multiply>
+    <multiply name="multiply_float2" type="float" xpos="6.695652" ypos="3.594828">
+      <input name="in2" type="float" output="outy" nodename="separate2_vector2" />
+      <input name="in1" type="float" nodename="round_float4" />
+    </multiply>
+    <separate2 name="separate2" type="multioutput" xpos="-5.478261" ypos="2.353448">
+      <input name="in" type="vector2" interfacename="resolution" />
+    </separate2>
+    <combine2 name="combine2_vector2" type="vector2" xpos="8.318841" ypos="3.043103">
+      <input name="in2" type="float" nodename="multiply_float2" />
+      <input name="in1" type="float" nodename="multiply_float" />
+    </combine2>
+    <add name="add_float" type="float" xpos="2.347826" ypos="-5.275862">
+      <input name="in2" type="float" output="outx" nodename="separate2_vector2" />
+      <input name="in1" type="float" nodename="divide_float5" />
+    </add>
+    <add name="add_float2" type="float" xpos="2.420290" ypos="-3.862069">
+      <input name="in1" type="float" nodename="divide_float6" />
+      <input name="in2" type="float" output="outy" nodename="separate2_vector2" />
+    </add>
+    <multiply name="multiply_float5" type="float" xpos="4.492754" ypos="-5.034483">
+      <input name="in2" type="float" nodename="add_float" />
+      <input name="in1" type="float" nodename="round_float3" />
+    </multiply>
+    <multiply name="multiply_float6" type="float" xpos="4.478261" ypos="-3.784483">
+      <input name="in2" type="float" nodename="add_float2" />
+      <input name="in1" type="float" nodename="round_float4" />
+    </multiply>
+    <round name="round_float" type="float" xpos="6.347826" ypos="-5.172414">
+      <input name="in" type="float" nodename="multiply_float5" />
+    </round>
+    <round name="round_float2" type="float" xpos="6.144928" ypos="-3.344828">
+      <input name="in" type="float" nodename="multiply_float6" />
+    </round>
+    <divide name="divide_float" type="float" xpos="7.963768" ypos="-5.137931">
+      <input name="in1" type="float" nodename="round_float" />
+      <input name="in2" type="float" nodename="round_float3" />
+    </divide>
+    <divide name="divide_float2" type="float" xpos="8.065217" ypos="-3.586207">
+      <input name="in1" type="float" nodename="round_float2" />
+      <input name="in2" type="float" nodename="round_float4" />
+    </divide>
+    <divide name="divide_float3" type="float" xpos="9.478261" ypos="-5.965517">
+      <input name="in2" type="float" nodename="round_float3" />
+      <input name="in1" type="float" value="-0.5" />
+    </divide>
+    <divide name="divide_float4" type="float" xpos="9.456522" ypos="-3.896552">
+      <input name="in2" type="float" nodename="round_float4" />
+      <input name="in1" type="float" value="-0.5" />
+    </divide>
+    <add name="add_float3" type="float" xpos="10.884058" ypos="-5.379310">
+      <input name="in2" type="float" nodename="divide_float" />
+      <input name="in1" type="float" nodename="divide_float3" />
+    </add>
+    <add name="add_float4" type="float" xpos="10.869565" ypos="-3.370690">
+      <input name="in2" type="float" nodename="divide_float2" />
+      <input name="in1" type="float" nodename="divide_float4" />
+    </add>
+    <combine2 name="combine2_vector3" type="vector2" xpos="11.913043" ypos="-3.448276">
+      <input name="in1" type="float" nodename="add_float3" />
+      <input name="in2" type="float" nodename="add_float4" />
+    </combine2>
+    <round name="round_float3" type="float" xpos="-4.202899" ypos="2.008621">
+      <input name="in" type="float" nodename="separate2" output="outx" />
+    </round>
+    <round name="round_float4" type="float" xpos="-4.202899" ypos="3.284483">
+      <input name="in" type="float" nodename="separate2" output="outy" />
+    </round>
+    <divide name="divide_float5" type="float" xpos="-0.028986" ypos="-5.646552">
+      <input name="in1" type="float" value="0.5" />
+      <input name="in2" type="float" nodename="round_float3" />
+    </divide>
+    <divide name="divide_float6" type="float" xpos="0.086957" ypos="-4.413793">
+      <input name="in2" type="float" nodename="round_float4" />
+      <input name="in1" type="float" value="0.5" />
+    </divide>
+    <output name="out" type="color3" xpos="16.043478" ypos="-0.310345" nodename="multiply_color3" />
+  </nodegraph>
+</materialx>
