@@ -1,6 +1,8 @@
-## usd-assets
+## cg-assets
 
-A collection of USD assets with different material formats for educational and testing purposes.
+A collection of USD and MaterialX assets for educational and testing purposes.
+
+### Scenes
 
 <table>
     <thead>
@@ -99,3 +101,9 @@ A collection of USD assets with different material formats for educational and t
         </tr>
     </tbody>
 </table>
+
+### Materials
+
+| Interior Map | LCD  |
+| --- | --- |
+| <a href="interior-map"><img width="200" alt="preview" src="interior-map/preview.png" /></a> | <a href="lcd"><img width="200" alt="preview" src="lcd/preview.png" /></a> |
